@@ -1,0 +1,11 @@
+$Module vdp 3 "VMOD VDP"
+
+DESCRIPTION
+===========
+
+Inserts a VDP processor into the delivery pipeline
+
+$ABI vrt
+$Function VOID insert()
+
+Insert a VDP

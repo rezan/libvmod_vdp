@@ -1,0 +1,26 @@
+varnishtest "Test VDP"
+
+server s1 {
+	rxreq
+	txresp -body "text!"
+} -start
+
+varnish v1 -vcl+backend {
+	import ${vmod_vdp};
+
+	sub vcl_deliver {
+		vdp.insert();
+	}
+} -start
+
+logexpect l1 -v v1 {
+	expect * * VCL_Log "VDP 5 bytes delivered"
+} -start
+
+client c1 {
+	txreq
+	rxresp
+	expect resp.body == "text!"
+} -run
+
+logexpect l1 -wait
