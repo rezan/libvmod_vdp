@@ -7,7 +7,6 @@
 #include "cache/cache.h"
 #include "cache/cache_filter.h"
 #include "vcl.h"
-//#include "cache/cache_varnishd.h"
 
 static int v_matchproto_(vdp_init_f)
 my_vdp_init(struct req *req, void **priv)
